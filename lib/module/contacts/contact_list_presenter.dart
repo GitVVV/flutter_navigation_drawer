@@ -3,6 +3,7 @@ import '../../injection/dependency_injection.dart';
 
 abstract class ContactListViewContract {
   void onLoadContactsComplete(List<Contact> items);
+
   void onLoadContactsError();
 }
 
@@ -17,12 +18,11 @@ class ContactListPresenter {
   void loadContacts() {
     assert(_view != null);
 
-    _repository
-        .fetch()
-        .then((contacts) => _view.onLoadContactsComplete(contacts))
-        .catchError((onError) {
-      print(onError);
-      _view.onLoadContactsError();
-    });
+    _repository.fetch().then((contacts) => _view.onLoadContactsComplete(contacts)).catchError(
+      (onError) {
+        print(onError);
+        _view.onLoadContactsError();
+      },
+    );
   }
 }

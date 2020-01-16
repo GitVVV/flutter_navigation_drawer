@@ -1,4 +1,5 @@
 import 'dart:async';
+
 import 'package:intl/intl.dart';
 
 class Contact {
@@ -12,14 +13,7 @@ class Contact {
   final Location location;
   final List<Phone> phones;
 
-  const Contact(
-      {this.fullName,
-      this.gender,
-      this.email,
-      this.imageUrl,
-      this.birthday,
-      this.location,
-      this.phones});
+  const Contact({this.fullName, this.gender, this.email, this.imageUrl, this.birthday, this.location, this.phones});
 
   Contact.fromMap(Map<String, dynamic> map)
       : fullName = "${map['name']['first']} ${map['name']['last']}",
@@ -28,10 +22,7 @@ class Contact {
         imageUrl = map['picture']['large'],
         birthday = _formatter.format(DateTime.parse(map['dob']['date'])),
         location = Location.fromMap(map['location']),
-        phones = <Phone>[
-          new Phone(type: 'Home', number: map['phone']),
-          new Phone(type: 'Mobile', number: map['cell'])
-        ];
+        phones = <Phone>[new Phone(type: 'Home', number: map['phone']), new Phone(type: 'Mobile', number: map['cell'])];
 }
 
 class Location {

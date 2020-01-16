@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+
+import '../../data/contact_data.dart';
+import '../../widget/drawer.dart';
 import 'contact_detail_view.dart';
 import 'contact_list_presenter.dart';
-import '../../widget/drawer.dart';
-import '../../data/contact_data.dart';
 
 class ContactsPage extends StatelessWidget {
   static const String routeName = '/contacts';
@@ -30,8 +31,7 @@ class ContactList extends StatefulWidget {
   _ContactListState createState() => _ContactListState();
 }
 
-class _ContactListState extends State<ContactList>
-    implements ContactListViewContract {
+class _ContactListState extends State<ContactList> implements ContactListViewContract {
   ContactListPresenter _presenter;
 
   List<Contact> _contacts;
@@ -109,8 +109,7 @@ class _ContactListState extends State<ContactList>
 ///
 
 class _ContactListItem extends ListTile {
-  _ContactListItem(
-      {@required Contact contact, @required GestureTapCallback onTap})
+  _ContactListItem({@required Contact contact, @required GestureTapCallback onTap})
       : super(
             title: Text(contact.fullName),
             subtitle: Text(contact.email),
